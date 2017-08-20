@@ -37,7 +37,7 @@ class TorchJavaField(private val psiField: PsiField) : TorchJavaMember(psiField)
     override val modifiers: Set<String>
         get() {
             val list = psiField.modifierList!!
-            return PsiModifier.MODIFIERS.asSequence().filter { list.hasModifierProperty(it) }.toCollection(HashSet())
+            return PsiModifier.MODIFIERS.filterTo(HashSet()) { list.hasModifierProperty(it) }
         }
 
     override val annotations: Set<TorchAnnotation>

@@ -28,7 +28,7 @@ interface TorchMethod : TorchMember {
 }
 
 val TorchMethod.jvmParamListString
-    get() = jvmParamList.joinToString(separator = "")
+    get() = jvmParamList.joinToString("")
 
 val TorchMethod.jvmFullyQualifiedName
     get() = "$jvmName($jvmParamListString)$jvmReturnTypeName"

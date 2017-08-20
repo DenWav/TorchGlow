@@ -25,7 +25,7 @@ class TorchJavaMethod(private val method: PsiMethod) : TorchJavaMember(method), 
     override val modifiers: Set<String>
         get() {
             val list = method.modifierList
-            return PsiModifier.MODIFIERS.asSequence().filter { list.hasModifierProperty(it) }.toCollection(HashSet())
+            return PsiModifier.MODIFIERS.filterTo(HashSet()) { list.hasModifierProperty(it) }
         }
 
     override val simpleName: String
