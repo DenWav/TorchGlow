@@ -1,0 +1,32 @@
+<!--
+    TorchGlow
+
+    IntelliJ JVM Bytecode PSI Equivalency Framework
+
+    Copyright (c) 2017 Kyle Wood
+
+    MIT License
+-->
+
+<idea-plugin>
+
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.java</depends>
+
+    <id>com.demonwav.torchglow</id>
+    <name>TorchGlow</name>
+    <vendor>Kyle Wood</vendor>
+
+    <description>IntelliJ JVM Bytecode PSI Equivalency Framework</description>
+
+    <idea-version since-build="172" until-build="172.*"/>
+
+    <extensions defaultExtensionNs="com.intellij">
+    </extensions>
+
+    <application-components>
+    </application-components>
+
+    <project-components>
+    </project-components>
+</idea-plugin>
