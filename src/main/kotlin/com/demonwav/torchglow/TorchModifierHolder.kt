@@ -10,9 +10,7 @@
 
 package com.demonwav.torchglow
 
-import com.intellij.psi.PsiModifier
-
 interface TorchModifierHolder {
 
-    val modifiers: Set<PsiModifier>
+    val modifiers: Set<String>
 }

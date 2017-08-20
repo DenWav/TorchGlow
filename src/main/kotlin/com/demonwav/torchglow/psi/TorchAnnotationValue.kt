@@ -12,6 +12,9 @@ package com.demonwav.torchglow.psi
 
 interface TorchAnnotationValue : TorchElement {
 
-    val name: String
-    val value: String
+    val annotation: TorchAnnotation
+
+    val name: String?
+
+    val value: String?
 }

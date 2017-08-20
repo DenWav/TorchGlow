@@ -10,7 +10,9 @@
 
 package com.demonwav.torchglow.psi
 
-interface TorchPackage : TorchNamedElement {
+interface TorchPackage : TorchElement {
+
+    val name: String
 
     val classes: Set<TorchClass>
 }

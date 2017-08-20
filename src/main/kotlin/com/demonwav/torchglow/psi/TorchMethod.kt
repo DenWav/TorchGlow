@@ -24,7 +24,7 @@ interface TorchMethod : TorchMember {
 
     val paramList: Set<PsiType?>
 
-    val superMethod: TorchMethod?
+    val superMethods: Set<TorchMethod>
 }
 
 val TorchMethod.jvmParamListString

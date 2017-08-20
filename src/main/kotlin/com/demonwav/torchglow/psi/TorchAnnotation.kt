@@ -14,8 +14,6 @@ package com.demonwav.torchglow.psi
 
 interface TorchAnnotation : TorchElement {
 
-    val holderElement: TorchElement
-
     val values: Set<TorchAnnotationValue>
 }
 

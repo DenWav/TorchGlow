@@ -8,10 +8,9 @@
  * MIT License
  */
 
-package com.demonwav.torchglow.java
+package com.demonwav.torchglow.javaimpl
 
 import com.demonwav.torchglow.TorchCache
-import com.demonwav.torchglow.java.TorchJavaParser
 import com.demonwav.torchglow.psi.TorchClass
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.Key
@@ -23,7 +22,9 @@ import com.intellij.psi.util.PsiModificationTracker
 
 class TorchJavaCache(project: Project) : TorchCache<PsiClass>(project) {
 
-    override fun getTorch(psi: PsiClass): TorchClass? {
+    private val parser = TorchJavaParser.getInstance(project)
+
+    override fun getTorch(psi: PsiClass): TorchClass {
         return CachedValuesManager.getManager(project).getParameterizedCachedValue(psi, KEY, this, true, psi)
     }
 
@@ -32,7 +33,7 @@ class TorchJavaCache(project: Project) : TorchCache<PsiClass>(project) {
     }
 
     override fun compute(param: PsiClass): CachedValueProvider.Result<TorchClass>? {
-        return createResult(TorchJavaParser.buildStructure(param))
+        return createResult(parser.buildStructure(param))
     }
 
     companion object : TorchCacheCompanion<TorchJavaCache>(::TorchJavaCache) {

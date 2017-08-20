@@ -11,7 +11,6 @@
 package com.demonwav.torchglow.psi
 
 import com.demonwav.torchglow.TorchModifierHolder
-import com.demonwav.torchglow.TorchType
 
 interface TorchClass : TorchNamedElement, TorchModifierHolder, TorchAnnotationHolder {
 
@@ -25,11 +24,9 @@ interface TorchClass : TorchNamedElement, TorchModifierHolder, TorchAnnotationHo
 
     val containingClass: TorchClass?
 
-    val containedClases: Set<TorchClass>
+    val containedClasses: Set<TorchClass>
 
     val superClass: TorchClass
 
     val supers: Set<TorchClass>
-
-    val type: TorchType
 }

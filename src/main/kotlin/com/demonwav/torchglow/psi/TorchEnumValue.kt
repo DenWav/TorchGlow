@@ -10,7 +10,7 @@
 
 package com.demonwav.torchglow.psi
 
-interface TorchEnumValue {
+interface TorchEnumValue : TorchClassElement, TorchElement {
 
     val name: String
 }
