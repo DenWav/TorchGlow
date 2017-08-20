@@ -15,7 +15,7 @@ import com.demonwav.torchglow.psi.TorchEnumValue
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiEnumConstant
 
-class TorchJavaEnum(psiClass: PsiClass) : TorchJavaClass(psiClass), TorchEnum {
+class TorchJavaEnum(initClass: PsiClass) : TorchJavaClass(initClass), TorchEnum {
 
     override val values: Set<TorchEnumValue> by lazy {
         psiClass.fields.asSequence().filter { it is PsiEnumConstant }.mapTo(HashSet()) { TorchJavaEnumValue(it as PsiEnumConstant) }

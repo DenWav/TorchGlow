@@ -20,13 +20,13 @@ interface TorchClass : TorchNamedElement, TorchModifierHolder, TorchAnnotationHo
 
     val fields: Set<TorchField>
 
-    val containingPackage: TorchPackage
+    val containingPackage: TorchPackage?
 
     val containingClass: TorchClass?
 
     val containedClasses: Set<TorchClass>
 
-    val superClass: TorchClass
+    val superClass: TorchClass?
 
     val supers: Set<TorchClass>
 }
