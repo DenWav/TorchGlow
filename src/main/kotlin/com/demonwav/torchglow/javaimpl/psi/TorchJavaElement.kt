@@ -16,6 +16,7 @@ import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiElement
 
 abstract class TorchJavaElement(override val element: PsiElement) : TorchElement {
+
     override val type: TorchType
         get() = TorchType.JAVA
 

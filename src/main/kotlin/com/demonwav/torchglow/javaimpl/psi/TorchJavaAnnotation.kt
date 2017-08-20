@@ -16,6 +16,7 @@ import com.intellij.psi.PsiAnnotation
 
 class TorchJavaAnnotation(private val annotation: PsiAnnotation) : TorchJavaElement(annotation), TorchAnnotation {
 
-    override val values: Set<TorchAnnotationValue>
-        get() = annotation.parameterList.attributes.mapTo(HashSet()) { TorchJavaAnnotationValue(this, it) }
+    override val values: Set<TorchAnnotationValue> by lazy {
+        annotation.parameterList.attributes.mapTo(HashSet()) { TorchJavaAnnotationValue(this, it) }
+    }
 }

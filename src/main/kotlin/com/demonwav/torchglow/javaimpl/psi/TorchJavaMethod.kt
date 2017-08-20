@@ -10,7 +10,6 @@
 
 package com.demonwav.torchglow.javaimpl.psi
 
-import com.demonwav.torchglow.javaimpl.JavaElementCache
 import com.demonwav.torchglow.psi.TorchAnnotation
 import com.demonwav.torchglow.psi.TorchMethod
 import com.intellij.psi.PsiMethod
@@ -20,13 +19,10 @@ import org.jetbrains.uast.java.annotations
 
 class TorchJavaMethod(private val method: PsiMethod) : TorchJavaMember(method), TorchMethod {
 
-    private val cache = JavaElementCache.getInstance(method.project)
-
-    override val modifiers: Set<String>
-        get() {
-            val list = method.modifierList
-            return PsiModifier.MODIFIERS.filterTo(HashSet()) { list.hasModifierProperty(it) }
-        }
+    override val modifiers: Set<String> by lazy {
+        val list = method.modifierList
+        PsiModifier.MODIFIERS.filterTo(HashSet()) { list.hasModifierProperty(it) }
+    }
 
     override val simpleName: String
         get() = method.name
@@ -34,8 +30,9 @@ class TorchJavaMethod(private val method: PsiMethod) : TorchJavaMember(method), 
     override val jvmName: String
         get() = TODO()
 
-    override val annotations: Set<TorchAnnotation>
-        get() = method.annotations.mapTo(HashSet()) { cache.getElement(it) as TorchAnnotation }
+    override val annotations: Set<TorchAnnotation> by lazy {
+        method.annotations.mapTo(HashSet(), ::TorchJavaAnnotation)
+    }
 
     override val jvmReturnTypeName: String
         get() = TODO()
@@ -46,9 +43,11 @@ class TorchJavaMethod(private val method: PsiMethod) : TorchJavaMember(method), 
     override val returnType: PsiType?
         get() = method.returnType
 
-    override val paramList: Set<PsiType>
-        get() = method.parameterList.parameters.mapTo(HashSet()) { it.type }
+    override val paramList: Set<PsiType> by lazy {
+        method.parameterList.parameters.mapTo(HashSet()) { it.type }
+    }
 
-    override val superMethods: Set<TorchMethod>
-        get() = method.findSuperMethods().mapTo(HashSet()) { cache.getElement(it) as TorchMethod }
+    override val superMethods: Set<TorchMethod> by lazy {
+        method.findSuperMethods().mapTo(HashSet(), ::TorchJavaMethod)
+    }
 }

@@ -22,8 +22,6 @@ import com.intellij.psi.util.PsiModificationTracker
 
 class TorchJavaCache(project: Project) : TorchCache<PsiClass>(project) {
 
-    private val parser = TorchJavaParser.getInstance(project)
-
     override fun getTorch(psi: PsiClass): TorchClass {
         return CachedValuesManager.getManager(project).getParameterizedCachedValue(psi, KEY, this, true, psi)
     }
@@ -33,7 +31,7 @@ class TorchJavaCache(project: Project) : TorchCache<PsiClass>(project) {
     }
 
     override fun compute(param: PsiClass): CachedValueProvider.Result<TorchClass>? {
-        return createResult(parser.buildStructure(param))
+        return createResult(TorchJavaParser.buildStructure(param))
     }
 
     companion object : TorchCacheCompanion<TorchJavaCache>(::TorchJavaCache) {
